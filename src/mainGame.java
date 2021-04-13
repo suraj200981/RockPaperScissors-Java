@@ -1,11 +1,20 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class mainGame {
-    public static void main(String[] args) {
-        while (true) {
+
+   public static int playerScore = 0;
+  public static int computerScore = 0;
+  public static String gameResult ="";
+    public static void main(String[] args) throws IOException {
+
+        for(int x=0; x<3; x++) {
             rockPaperScissorsGame();
+         for (int i = 0; i < 30; ++i) System.out.println();
+
         }
     }
+
 
 
     public static void menu() {
@@ -14,17 +23,14 @@ public class mainGame {
         System.out.println();
     }
 
+
     public static void rockPaperScissorsGame() {
 
         int computerValue = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1); // the computer choice
 
-        int playerScore = 0;
-        int computerScore = 0;
-
-
-        System.out.println("Your score = "+playerScore+"   Computer score = "+computerScore);
+        System.out.println(gameResult);
+        System.out.println("Your score = "+playerScore+"   Computer score = "+computerScore); //print scores
         System.out.println();
-        System.out.println(computerValue);
         System.out.println("Select below:");
 
         System.out.println();
@@ -35,20 +41,42 @@ public class mainGame {
 
         if (userInput.toLowerCase().equals("r") && computerValue == 1) { // rock vs rock
             System.out.println("draw");
+            gameResult="Last game result: You chose rock and the computer chose rock, it was a draw";
         }else if (userInput.toLowerCase().equals("r") && computerValue == 2){ // rock vs paper
             System.out.println("You lose!");
+            gameResult="Last game result: You chose rock and the computer chose paper, you lost";
             computerScore++;
-            if(playerScore!=0){
-                playerScore--;
-            }
         }else if (userInput.toLowerCase().equals("r") && computerValue == 3){ // rock vs scissors
             System.out.println("You win!");
+            gameResult="Last game result: You chose rock and the computer chose scissors, you won";
             playerScore++;
-            if(computerScore!=0){
-                computerScore--;
-            }
         }
 
+        /*user chooses paper*/
+        if (userInput.toLowerCase().equals("p") && computerValue == 1) { // paper vs rock
+            System.out.println("You win!");
+            gameResult="Last game result: You chose paper and the computer chose rock, you won";
+        }else if (userInput.toLowerCase().equals("p") && computerValue == 2){ // paper vs paper
+            System.out.println("draw");
+            gameResult="Last game result: You chose paper and the computer chose paper, it was a draw";
+            computerScore++;
+        }else if (userInput.toLowerCase().equals("p") && computerValue == 3){ // paper vs scissors
+            System.out.println("You lose!");
+            gameResult="Last game result: You chose paper and the computer chose scissors, you lose";
+            playerScore++;
+        }
 
+        if (userInput.toLowerCase().equals("p") && computerValue == 1) { // paper vs rock
+            System.out.println("You win!");
+            gameResult="Last game result: You chose paper and the computer chose rock, you won";
+        }else if (userInput.toLowerCase().equals("p") && computerValue == 2){ // paper vs paper
+            System.out.println("draw");
+            gameResult="Last game result: You chose paper and the computer chose paper, it was a draw";
+            computerScore++;
+        }else if (userInput.toLowerCase().equals("p") && computerValue == 3){ // paper vs scissors
+            System.out.println("You lose!");
+            gameResult="Last game result: You chose paper and the computer chose scissors, you lose";
+            playerScore++;
+        }
     }
 }
